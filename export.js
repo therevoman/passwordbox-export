@@ -94,7 +94,7 @@ window.MK = {};
     warnOnVersion();
 
     config = config || {};
-    var cols = config.cols || ['name', 'url', 'login', 'password', 'created_at', 'details', 'domain', 'memo', 'type'];
+    var cols = config.cols || ['name', 'login', 'password', 'type', 'memo', 'url', 'created_at', 'details', 'domain'];
     var rows = config.includeHeader ? [arrayToCsvRow(cols)] : [];
     return rows.concat(getDecryptedRecords().map(function (item) {
       return arrayToCsvRow(cols.map(function (colName) {
