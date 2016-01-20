@@ -94,7 +94,7 @@ window.MK = {};
     warnOnVersion();
 
     config = config || {};
-    var cols = config.cols || ['name', 'login', 'password', 'type', 'memo', 'url', 'created_at', 'details', 'domain'];
+    var cols = config.cols || ['name', 'login', 'password', 'type', 'memo', 'url'];
     var rows = config.includeHeader ? [arrayToCsvRow(cols)] : [];
     return rows.concat(getDecryptedRecords().map(function (item) {
       return arrayToCsvRow(cols.map(function (colName) {
@@ -118,6 +118,15 @@ window.MK = {};
    **/
   function exportFor1Password() {
     return exportCsv({cols: ['name', 'url', 'login', 'password'], includeHeader: false});
+  }
+
+  /**
+   * Customized export that can be imported into 1Password Version 4.4.2 (442010).
+   *
+   * @returns {string} Exported data as CSV string.
+   **/
+  function exportForLastPassToClipboard() {
+    return exportCsv({cols: ['name', 'login', 'password', 'url'], includeHeader: true});
   }
 
   function exportCsvToClipboard(config) {
